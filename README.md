@@ -27,7 +27,7 @@ set TELEGRAM_BOT_TOKEN=your_token_here  # Windows
 
 ## Running the Bot
 ```sh
-python bot.py
+python3 formula_tg_bot.py
 ```
 The bot will continuously run and respond to messages in Telegram.
 

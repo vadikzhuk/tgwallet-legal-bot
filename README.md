@@ -40,7 +40,13 @@ The bot will continuously run and respond to messages in Telegram.
    # Add your bot token in Railway
    TELEGRAM_BOT_TOKEN=your_token_here
    ```
-5. Deploy the project, and your bot will run 24/7!
+5. Add a file named Procfile in the root of the project with the following content:
+   ```sh
+   # Procfile
+   worker: python bot.py
+   ```
+This tells Railway how to start your bot.
+6. Deploy the project, and your bot will run 24/7!
 
 ## Logging
 The bot logs all actions to the **console**, which can be viewed in Railway's **Logs tab**.

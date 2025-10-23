@@ -26,7 +26,7 @@ def calculate_formula(frequency, month, day):
 
     match frequency:
         case "Yearly":
-            formula = f"=if(today()>date(year(today()), {month}, {day}), date(year(today())+1, {month}, {day}), (date(year(today()), {month}, {day}))"
+            formula = f"=if(today()>date(year(today()), {month}, {day}), date(year(today())+1, {month}, {day}), (date(year(today()), {month}, {day})))"
         case "Twice a year":
             biyearly_months = sorted([
                 MONTH_LIST[month_index],
@@ -40,7 +40,7 @@ def calculate_formula(frequency, month, day):
                 MONTH_LIST[(month_index + 6) % 12],
                 MONTH_LIST[(month_index + 9) % 12]
             ], key=int)
-            formula = f"=if(today() >= date(year(today()), {quarterly_months[2]}, {day}), date(year(today()), {quarterly_months[3]}, {day}), if (today() >= date(year(today()), {quarterly_months[1]}, {day}), date(year(today()), {quarterly_months[2]}, {day}), if(today() >= date(year(today()), {quarterly_months[0]}, {day}), date(year(today()), {quarterly_months[1]}, {day}, date(year(today()), {quarterly_months[0]}, {day}))))"
+            formula = f"=IF(TODAY()>=DATE(YEAR(TODAY()), {quarterly_months[3]}, {day}), DATE(YEAR(TODAY())+1, {quarterly_months[0]}, {day}), IF(TODAY()>=DATE(YEAR(TODAY()), {quarterly_months[2]}, {day}), DATE(YEAR(TODAY()), {quarterly_months[3]}, {day}), IF(TODAY()>=DATE(YEAR(TODAY()), {quarterly_months[1]}, {day}), DATE(YEAR(TODAY()), {quarterly_months[2]}, {day}), IF(TODAY()>=DATE(YEAR(TODAY()), {quarterly_months[0]}, {day}), DATE(YEAR(TODAY()), {quarterly_months[1]}, {day}), DATE(YEAR(TODAY()), {quarterly_months[0]}, {day})))))"
         case "Monthly":
             formula = f"if(day(today()) < {day}, date(year(today()), month(today()), {day}), date(year(today()), month(today())+1, {day}))"
         case _:
